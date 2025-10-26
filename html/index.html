@@ -1,0 +1,1401 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>艾爾芙卡 - 在『聲音』中改寫地形的戰棋對決</title>
+    <link rel="icon" href="favicon.ico">
+    <meta name="description" content="回合制 × PVP × 可變地形的創新戰棋遊戲">
+    <!-- Css -->
+    <link href="assets/css/plugins/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/fonts/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/fonts/bs-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/css/plugins/slick.css" rel="stylesheet">
+    <link href="assets/css/plugins/magnific-popup.css" rel="stylesheet">
+    <link href="assets/css/plugins/animate.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    <link href="assets/css/game-custom.css" rel="stylesheet">
+    <style>
+        /* 艾爾芙卡主題調整 */
+        :root {
+            --primary-gold: #e3c45b;
+            --primary-gold-dark: #d1b047;
+        }
+        
+        .game-hero {
+            background: linear-gradient(135deg, rgba(227, 196, 91, 0.1) 0%, rgba(15, 15, 15, 0.9) 100%);
+        }
+        
+        .hero-title-main {
+            background: linear-gradient(135deg, var(--primary-gold) 0%, #fff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-subtitle-main {
+            color: var(--primary-gold);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-highlight {
+            background: rgba(227, 196, 91, 0.1);
+            border: 1px solid var(--primary-gold);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-highlight:hover {
+            transform: translateY(-5px);
+            background: rgba(227, 196, 91, 0.15);
+        }
+        
+        .feature-highlight i {
+            color: var(--primary-gold);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title-gold {
+            color: var(--primary-gold);
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title-gold::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary-gold);
+            border-radius: 2px;
+        }
+        
+        .character-showcase {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        
+        .game-logo-main {
+            max-width: 150px;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 0 20px rgba(227, 196, 91, 0.3));
+        }
+    </style>
+</head>
+
+<body>
+    <div class="preloader">
+        <img src="assets/images/preloader.svg" alt="preloader">
+    </div>
+
+    <!-- Header Start -->
+    <header class="header can-sticky">
+        <div class="container">
+            <div class="header_inner">
+                <!-- Desktop Logo Start -->
+                <div class="logo">
+                    <a href="index.html" class="d-flex h-100">
+                        <img src="assets/images/LOGO.png" alt="艾爾芙卡 Logo" class="image-fit-contain">
+                    </a>
+                </div>
+                <!-- Desktop Logo End -->
+                <!-- Navigation Start -->
+                <div class="navigation">
+                    <ul class="main-menu">
+                        <li class="menu-item">
+                            <a href="index.html" class="active">首頁</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="download.html">下載點</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="world.html">世界展示</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="characters.html">角色展示</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="gameplay.html">玩法介紹</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Navigation End -->
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Game Hero Section -->
+    <section class="game-hero" id="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <img src="assets/images/LOGO.png" alt="艾爾芙卡 Logo" class="game-logo-main img-fluid">
+                    <h1 class="hero-title-main">在『聲音』中改寫地形的戰棋對決</h1>
+                    <p class="hero-subtitle-main">回合制 × PVP × 可變地形</p>
+                    <p class="lead mb-4 text-light">電子世界『艾爾芙卡』：能以正確的聲音創造、摧毀與改變萬物。體驗前所未有的聲音戰棋策略遊戲。</p>
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="feature-highlight text-center">
+                                <i class="fas fa-mountain"></i>
+                                <h5 style="color: var(--primary-gold);">地形變化</h5>
+                                <p class="mb-0 text-light">地形可升降並造成推擠/傷害</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="feature-highlight text-center">
+                                <i class="fas fa-shield-alt"></i>
+                                <h5 style="color: var(--primary-gold);">QTE 系統</h5>
+                                <p class="mb-0 text-light">防守方也能主動操作</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="feature-highlight text-center">
+                                <i class="fas fa-clock"></i>
+                                <h5 style="color: var(--primary-gold);">快節奏</h5>
+                                <p class="mb-0 text-light">單局約 10–20 分鐘</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-buttons mt-4">
+                        <a href="download.html" class="thm-btn mr-3">
+                            <span>下載體驗</span>
+                            <cite class="liquid"></cite>
+                        </a>
+                        <a href="gameplay.html" class="thm-btn btn-outline">
+                            <span>了解玩法</span>
+                            <cite class="liquid"></cite>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <div class="character-showcase">
+                        <img src="assets/images/琉波像素小人(大圖)_0.png" alt="艾爾芙卡角色" class="img-fluid pixel-art">
+                        <h4 class="mt-3" style="color: var(--primary-gold);">聲音戰士</h4>
+                        <p class="text-light">掌握聲音力量的戰場藝術家</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 快速導航 -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title-gold">探索艾爾芙卡</h2>
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="box_wrapper mb-xl-30">
+                        <div class="single_games_inner text-center">
+                            <div class="games_thumb">
+                                <a href="download.html" class="h-100 d-flex">
+                                    <div style="background: linear-gradient(135deg, rgba(227, 196, 91, 0.2), rgba(0,0,0,0.8)); width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; border-radius: 15px;">
+                                        <i class="fas fa-download" style="font-size: 4rem; color: var(--primary-gold);"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="games_content">
+                                <h3><a href="download.html" style="color: var(--primary-gold);">立即下載</a></h3>
+                                <p>支援 Windows、Android、iOS(TestFlight) 三大平台，立即開始您的冒險。</p>
+                                <a href="download.html" class="thm-btn">
+                                    <span>前往下載</span>
+                                    <cite class="liquid"></cite>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6">
+                    <div class="box_wrapper mb-xl-30">
+                        <div class="single_games_inner text-center">
+                            <div class="games_thumb">
+                                <a href="world.html" class="h-100 d-flex">
+                                    <div style="background: linear-gradient(135deg, rgba(75, 179, 217, 0.2), rgba(0,0,0,0.8)); width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; border-radius: 15px;">
+                                        <i class="fas fa-globe" style="font-size: 4rem; color: #4fb3d9;"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="games_content">
+                                <h3><a href="world.html" style="color: var(--primary-gold);">電子世界</a></h3>
+                                <p>探索『艾爾芙卡』的神秘世界，在這裡聲音創造一切。</p>
+                                <a href="world.html" class="thm-btn btn-outline">
+                                    <span>世界展示</span>
+                                    <cite class="liquid"></cite>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6">
+                    <div class="box_wrapper mb-xl-30">
+                        <div class="single_games_inner text-center">
+                            <div class="games_thumb">
+                                <a href="characters.html" class="h-100 d-flex">
+                                    <div style="background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(0,0,0,0.8)); width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; border-radius: 15px;">
+                                        <i class="fas fa-users" style="font-size: 4rem; color: #ff6b35;"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="games_content">
+                                <h3><a href="characters.html" style="color: var(--primary-gold);">角色陣容</a></h3>
+                                <p>認識卡兒芬、瑠波等獨特角色，每位都有專屬武器與技能。</p>
+                                <a href="characters.html" class="thm-btn btn-outline">
+                                    <span>角色展示</span>
+                                    <cite class="liquid"></cite>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6">
+                    <div class="box_wrapper mb-xl-30">
+                        <div class="single_games_inner text-center">
+                            <div class="games_thumb">
+                                <a href="gameplay.html" class="h-100 d-flex">
+                                    <div style="background: linear-gradient(135deg, rgba(149, 225, 211, 0.2), rgba(0,0,0,0.8)); width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; border-radius: 15px;">
+                                        <i class="fas fa-gamepad" style="font-size: 4rem; color: #95e1d3;"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="games_content">
+                                <h3><a href="gameplay.html" style="color: var(--primary-gold);">創新玩法</a></h3>
+                                <p>地形變化、QTE 系統，體驗前所未有的戰棋遊戲。</p>
+                                <a href="gameplay.html" class="thm-btn btn-outline">
+                                    <span>玩法介紹</span>
+                                    <cite class="liquid"></cite>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 最新公告 -->
+    <section class="section section-bg" style="background: rgba(227, 196, 91, 0.05);">
+        <div class="container">
+            <h2 class="section-title-gold">最新公告</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="box_wrapper mb-xl-30">
+                        <div class="single_blog_inner">
+                            <div class="blog_thumb">
+                                <div style="background: linear-gradient(135deg, var(--primary-gold), #d1b047); width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; border-radius: 15px;">
+                                    <i class="fas fa-rocket" style="font-size: 3rem; color: white;"></i>
+                                </div>
+                            </div>
+                            <div class="blog_content">
+                                <div class="blog_meta">
+                                    <span class="meta_date">2024.10.20</span>
+                                </div>
+                                <h3><a href="#" style="color: var(--primary-gold);">測試版本發布</a></h3>
+                                <p>Beta 0.8 版本現已開放下載，新增雙人匹配功能與地形事件系統。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="box_wrapper mb-xl-30">
+                        <div class="single_blog_inner">
+                            <div class="blog_thumb">
+                                <div style="background: linear-gradient(135deg, #4fb3d9, #2e8aa6); width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; border-radius: 15px;">
+                                    <i class="fas fa-balance-scale" style="font-size: 3rem; color: white;"></i>
+                                </div>
+                            </div>
+                            <div class="blog_content">
+                                <div class="blog_meta">
+                                    <span class="meta_date">2024.10.15</span>
+                                </div>
+                                <h3><a href="#" style="color: var(--primary-gold);">角色平衡調整</a></h3>
+                                <p>調整卡兒芬與瑠波的技能數值，提升遊戲平衡性。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="box_wrapper mb-xl-30">
+                        <div class="single_blog_inner">
+                            <div class="blog_thumb">
+                                <div style="background: linear-gradient(135deg, #ff6b35, #e55a2b); width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; border-radius: 15px;">
+                                    <i class="fas fa-star" style="font-size: 3rem; color: white;"></i>
+                                </div>
+                            </div>
+                            <div class="blog_content">
+                                <div class="blog_meta">
+                                    <span class="meta_date">2024.10.10</span>
+                                </div>
+                                <h3><a href="#" style="color: var(--primary-gold);">新角色預告</a></h3>
+                                <p>即將推出兩位全新角色，敬請期待更多戰術組合。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 遊戲特色 -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title-gold">為什麼選擇艾爾芙卡？</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="box_wrapper">
+                        <div class="single_speciality_inner text-center">
+                            <div class="speciality_icon">
+                                <i class="fas fa-magic" style="color: var(--primary-gold); font-size: 3rem;"></i>
+                            </div>
+                            <div class="speciality_content">
+                                <h3 style="color: var(--primary-gold);">創新地形系統</h3>
+                                <p>地形不再是靜態背景，而是戰鬥的核心要素。透過聲音的力量改變戰場，創造戰術優勢。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="box_wrapper">
+                        <div class="single_speciality_inner text-center">
+                            <div class="speciality_icon">
+                                <i class="fas fa-bolt" style="color: var(--primary-gold); font-size: 3rem;"></i>
+                            </div>
+                            <div class="speciality_content">
+                                <h3 style="color: var(--primary-gold);">QTE 互動系統</h3>
+                                <p>防守不再被動！透過 QTE 系統，防守方也能主動參與戰鬥，逆轉局勢。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="box_wrapper">
+                        <div class="single_speciality_inner text-center">
+                            <div class="speciality_icon">
+                                <i class="fas fa-balance-scale" style="color: var(--primary-gold); font-size: 3rem;"></i>
+                            </div>
+                            <div class="speciality_content">
+                                <h3 style="color: var(--primary-gold);">平衡競技體驗</h3>
+                                <p>精心設計的角色與技能平衡，確保每場對戰都充滿變數與策略深度。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="footer_widget">
+                        <img src="assets/images/LOGO.png" alt="logo" class="footer_logo mb-3" style="max-width: 150px;">
+                        <p class="mb-3" style="color: var(--primary-gold);">艾爾芙卡</p>
+                        <p>在『聲音』中改寫地形的戰棋對決</p>
+                        <p>電子世界『艾爾芙卡』：能以正確的聲音創造、摧毀與改變萬物。</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="footer_widget">
+                        <h5 class="widget_title" style="color: var(--primary-gold);">快速連結</h5>
+                        <ul class="footer_links">
+                            <li><a href="download.html">下載遊戲</a></li>
+                            <li><a href="world.html">世界觀</a></li>
+                            <li><a href="characters.html">角色介紹</a></li>
+                            <li><a href="gameplay.html">遊戲玩法</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="footer_widget">
+                        <h5 class="widget_title" style="color: var(--primary-gold);">開發團隊</h5>
+                        <p><strong>結束樂隊</strong></p>
+                        <p>指導教授：廖世傑、吳思璿</p>
+                        <ul class="footer_links">
+                            <li>蘇柏穎</li>
+                            <li>黃鉉展</li>
+                            <li>唐義君</li>
+                            <li>陳廷安</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="footer_bottom text-center pt-4">
+                        <p>&copy; 2024 艾爾芙卡 - 結束樂隊. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="assets/js/plugins/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/plugins/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/plugins/slick.min.js"></script>
+    <script src="assets/js/plugins/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/plugins/wow.min.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+                    <a href="gameplay.html" class="btn btn-outline" style="margin-left: 1rem;">了解玩法</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 快速導航 -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">探索艾爾芙卡</h2>
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="card-title">
+                            <i class="fas fa-download"></i> 立即下載
+                        </div>
+                        <div class="card-content">
+                            <p>支援 Windows、Android、iOS(TestFlight) 三大平台，立即開始您的冒險。</p>
+                            <a href="download.html" class="btn" style="margin-top: 1rem;">前往下載</a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">
+                            <i class="fas fa-globe"></i> 電子世界
+                        </div>
+                        <div class="card-content">
+                            <p>探索『艾爾芙卡』的神秘世界，在這裡聲音創造一切。</p>
+                            <a href="world.html" class="btn btn-outline" style="margin-top: 1rem;">世界展示</a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">
+                            <i class="fas fa-users"></i> 角色陣容
+                        </div>
+                        <div class="card-content">
+                            <p>認識卡兒芬、瑠波等獨特角色，每位都有專屬武器與技能。</p>
+                            <a href="characters.html" class="btn btn-outline" style="margin-top: 1rem;">角色展示</a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">
+                            <i class="fas fa-gamepad"></i> 創新玩法
+                        </div>
+                        <div class="card-content">
+                            <p>地形變化、QTE 系統，體驗前所未有的戰棋遊戲。</p>
+                            <a href="gameplay.html" class="btn btn-outline" style="margin-top: 1rem;">玩法介紹</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 最新公告 -->
+        <section class="section" style="background: rgba(227, 196, 91, 0.05);">
+            <div class="container">
+                <h2 class="section-title">最新公告</h2>
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="card-title">測試版本發布</div>
+                        <div class="card-content">
+                            <p><small>2024.10.20</small></p>
+                            <p>Beta 0.8 版本現已開放下載，新增雙人匹配功能與地形事件系統。</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">角色平衡調整</div>
+                        <div class="card-content">
+                            <p><small>2024.10.15</small></p>
+                            <p>調整卡兒芬與瑠波的技能數值，提升遊戲平衡性。</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">新角色預告</div>
+                        <div class="card-content">
+                            <p><small>2024.10.10</small></p>
+                            <p>即將推出兩位全新角色，敬請期待更多戰術組合。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 遊戲特色 -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">為什麼選擇艾爾芙卡？</h2>
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="card-title">
+                            <i class="fas fa-magic" style="color: var(--accent-color);"></i>
+                            創新地形系統
+                        </div>
+                        <div class="card-content">
+                            <p>地形不再是靜態背景，而是戰鬥的核心要素。透過聲音的力量改變戰場，創造戰術優勢。</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">
+                            <i class="fas fa-bolt" style="color: var(--accent-color);"></i>
+                            QTE 互動系統
+                        </div>
+                        <div class="card-content">
+                            <p>防守不再被動！透過 QTE 系統，防守方也能主動參與戰鬥，逆轉局勢。</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">
+                            <i class="fas fa-balance-scale" style="color: var(--accent-color);"></i>
+                            平衡競技體驗
+                        </div>
+                        <div class="card-content">
+                            <p>精心設計的角色與技能平衡，確保每場對戰都充滿變數與策略深度。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 頁腳 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>艾爾芙卡</h3>
+                    <p>在『聲音』中改寫地形的戰棋對決</p>
+                    <p>電子世界『艾爾芙卡』：能以正確的聲音創造、摧毀與改變萬物。</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>快速連結</h3>
+                    <ul class="footer-links">
+                        <li><a href="download.html">下載遊戲</a></li>
+                        <li><a href="world.html">世界觀</a></li>
+                        <li><a href="characters.html">角色介紹</a></li>
+                        <li><a href="gameplay.html">遊戲玩法</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>開發團隊</h3>
+                    <p><strong>結束樂隊</strong></p>
+                    <p>指導教授：廖世傑、吳思璿</p>
+                    <ul class="footer-links">
+                        <li>蘇柏穎</li>
+                        <li>黃鉉展</li>
+                        <li>唐義君</li>
+                        <li>陳廷安</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 艾爾芙卡 - 結束樂隊. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
+                        <div class="widgets_inner">
+                            <div class="tags_cloud">
+                                <a href="blog-grid.html" class="thm-btn"><span>Results</span><cite class="liquid"></cite></a>
+                                <a href="blog-grid.html" class="thm-btn"><span>Finals</span><cite class="liquid"></cite></a>
+                                <a href="blog-grid.html" class="thm-btn"><span>Defence</span><cite class="liquid"></cite></a>
+                                <a href="blog-grid.html" class="thm-btn"><span>Players</span><cite class="liquid"></cite></a>
+                                <a href="blog-grid.html" class="thm-btn"><span>Champion</span><cite class="liquid"></cite></a>
+                                <a href="blog-grid.html" class="thm-btn"><span>Coach</span><cite class="liquid"></cite></a>
+                                <a href="blog-grid.html" class="thm-btn"><span>Statics</span><cite class="liquid"></cite></a>
+                                <a href="blog-grid.html" class="thm-btn"><span>Professionals</span><cite class="liquid"></cite></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- widgets -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- OffCanvas End -->
+    <!-- Header Start -->
+    <header class="header can-sticky">
+        <div class="container">
+            <div class="header_inner">
+                <!-- Offcanvas Trigger Start -->
+                <button type="button" class="trigger_btn canvas_trigger" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">
+                    <cite class="trigger_inner">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </cite>
+                </button>
+                <!-- Offcanvas Trigger End -->
+                <!-- Desktop Logo Start -->
+                <div class="logo d-lg-none d-block">
+                    <a href="index.html" class="d-flex h-100">
+                        <img src="assets/images/logo.png" alt="logo" class="image-fit-contain">
+                    </a>
+                </div>
+                <!-- Desktop Logo End -->
+                <!-- Navigation Start -->
+                <div class="navigation">
+                    <ul class="main-menu">
+                        <li class="menu-item menu-item-has-children">
+                            <a href="#" class="active">Home</a>
+                            <ul class="sub-menu">
+                                <li class="menu-item">
+                                    <a href="index.html">Home v1</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="index-v2.html">Home v2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="menu-item">
+                            <a href="about.html">About</a>
+                        </li>
+                        <li class="menu-item menu-item-has-children">
+                            <a href="#">Match</a>
+                            <ul class="sub-menu">
+                                <li class="menu-item">
+                                    <a href="match.html">Match Page</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="match-details.html">Match Details</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="menu-item menu-item-logo">
+                            <a href="index.html">
+                                <img src="assets/images/logo.png" alt="logo" class="image-fit-contain">
+                            </a>
+                        </li>
+                        <li class="menu-item menu-item-has-children">
+                            <a href="#">Blog</a>
+                            <ul class="sub-menu">
+                                <li class="menu-item menu-item-has-children">
+                                    <a href="#">Blog Grid</a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item">
+                                            <a href="blog-grid.html">Full Width</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="blog-grid-left.html">Left Sidebar</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="blog-grid-right.html">Right Sidebar</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item menu-item-has-children">
+                                    <a href="#">Blog List</a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item">
+                                            <a href="blog-list.html">Full Width</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="blog-list-left.html">Left Sidebar</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="blog-list-right.html">Right Sidebar</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="blog-details.html">Blog Details</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="menu-item menu-item-has-children">
+                            <a href="#">Pages</a>
+                            <ul class="sub-menu">
+                                <li class="menu-item menu-item-has-children">
+                                    <a href="#">Games</a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item">
+                                            <a href="games.html">All Games</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="game-details.html">Game Details</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item menu-item-has-children">
+                                    <a href="#">Players</a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item">
+                                            <a href="player.html">Players</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="player-details.html">Player Details</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="faqs.html">FAQ's</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="login.html">Login</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="signup.html">Signup</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="404.html">Error 404</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="menu-item">
+                            <a href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Navigation End -->
+                <!-- Header Actions Start -->
+                <div class="header_actions">
+                    <ul>
+                        <li>
+                            <button type="button" class="trigger_btn search_trigger">
+                                <i class="bi-search"></i>
+                            </button>
+                            <form class="search_form" action="#" method="POST">
+                                <div class="input-group">
+                                    <input type="text" name="#" class="form-control" placeholder="Search..." autocomplete="off" required>
+                                    <div class="input-group-append">
+                                        <button type="button" class="search_btn">
+                                            <i class="bi-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </li>
+                        <li>
+                            <a href="login.html" class="trigger_btn">
+                                <i class="bi-person-circle"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <button type="button" class="trigger_btn right_side d-lg-none d-flex hamburger_trigger">
+                        <cite class="trigger_inner">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </cite>
+                    </button>
+                </div>
+                <!-- Header Actions End -->
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+    <!-- Slider Start -->
+    <div class="slider relative" id="banner-animation">
+        <div class="banner_slider">
+            <!-- Item -->
+            <div class="slide_item section section-bg" style="background-image: url(assets/images/banner/1.jpg); --overlay-value: 75%;">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="banner_text">
+                                <h1 class="title animate__animated" data-animation-in="animate__fadeInUp">Today Best Playing</h1>
+                                <p class="text animate__animated" data-animation-in="animate__fadeInUp" data-delay-in="0.3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </p>
+                                <a href="match-details.html" class="thm-btn animate__animated" data-animation-in="animate__fadeInUp" data-delay-in="0.5">
+                                    <span>Read More</span>
+                                    <cite class="liquid"></cite>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Item -->
+            <div class="slide_item section section-bg" style="background-image: url(assets/images/banner/2.jpg); --overlay-value: 75%;">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="banner_text">
+                                <h1 class="title animate__animated" data-animation-in="animate__fadeInUp">At Present Best Games</h1>
+                                <p class="text animate__animated" data-animation-in="animate__fadeInUp" data-delay-in="0.3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </p>
+                                <a href="match-details.html" class="thm-btn animate__animated" data-animation-in="animate__fadeInUp" data-delay-in="0.5">
+                                    <span>Read More</span>
+                                    <cite class="liquid"></cite>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Item -->
+            <div class="slide_item section section-bg" style="background-image: url(assets/images/banner/3.jpg); --overlay-value: 75%;">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="banner_text">
+                                <h1 class="title animate__animated" data-animation-in="animate__fadeInUp">The Awesome Tournaments</h1>
+                                <p class="text animate__animated" data-animation-in="animate__fadeInUp" data-delay-in="0.3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </p>
+                                <a href="match-details.html" class="thm-btn animate__animated" data-animation-in="animate__fadeInUp" data-delay-in="0.5">
+                                    <span>Read More</span>
+                                    <cite class="liquid"></cite>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Item -->
+        </div>
+        <div class="transform-center">
+            <div class="container relative">
+                <div class="banner_arrows">
+                    <button class="slick-prev slick-arrow" type="button">Previous</button>
+                    <button class="slick-next slick-arrow" type="button">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Slider End -->
+    <!-- About Start -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="about_img wow animate__animated animate__fadeInLeft">
+                        <img src="assets/images/about/1.jpg" alt="img" class="image-fit">
+                    </div>
+                    <div class="about_img wow animate__animated animate__fadeInRight animate__delay-1s">
+                        <img src="assets/images/about/2.jpg" alt="img" class="image-fit">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about_text ps-lg-5 mb-xl-30">
+                        <div class="section-header">
+                            <h6 class="subtitle wow animate__animated animate__fadeInLeft">About us</h6>
+                            <h3 class="title wow animate__animated animate__fadeInLeft">Welcome To Our Deadfire Gaming Platform. </h3>
+                        </div>
+                        <p class=" wow animate__animated animate__fadeInLeft animate__delay-1s">Deadfire It is the best gaming platform, tournaments hub sports for the leading name on every device. </p>
+                        <p class=" wow animate__animated animate__fadeInLeft animate__delay-2s">Deadfire is a fascinating online gaming understanding for the entire Esports out there. Therefore, it does not matter whether you are a casual gamer, a new gamer, an amateur player, or a professional gamer who knows all about the games. </p>
+                        <a href="about.html" class="thm-btn wow animate__animated animate__fadeInLeft animate__delay-2s">
+                            <span>Read More</span>
+                            <cite class="liquid"></cite>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About End -->
+    <!-- Services Start -->
+    <section class="section-padding section-bg" style="background-image: url(assets/images/bg/1.jpg); --overlay-value: 87%;">
+        <div class="container">
+            <div class="section-header text-center">
+                <h6 class="subtitle wow animate__animated animate__fadeInUp">Games</h6>
+                <h3 class="title wow animate__animated animate__fadeInUp">Type Of Games</h3>
+            </div>
+            <div class="row justify-content-center">
+                <!-- item -->
+                <div class="col-lg-4 col-md-6 wow animate__animated animate__fadeInUp animate__delay-1s">
+                    <div class="service_block">
+                        <div class="icon">
+                            <i class="bi-camera-reels"></i>
+                        </div>
+                        <h4 class="title">Live Streaming</h4>
+                        <p class="text mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et</p>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-4 col-md-6 wow animate__animated animate__fadeInUp animate__delay-2s">
+                    <div class="service_block">
+                        <div class="icon">
+                            <i class="bi-newspaper"></i>
+                        </div>
+                        <h4 class="title">Game News</h4>
+                        <p class="text mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et</p>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-4 col-md-6 wow animate__animated animate__fadeInUp animate__delay-3s">
+                    <div class="service_block">
+                        <div class="icon">
+                            <i class="bi-list-stars"></i>
+                        </div>
+                        <h4 class="title">Game Tournaments</h4>
+                        <p class="text mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et</p>
+                    </div>
+                </div>
+                <!-- item -->
+            </div>
+        </div>
+    </section>
+    <!-- Services End -->
+    <!-- Gallery Start -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <h6 class="subtitle wow animate__animated animate__fadeInUp">Gallery</h6>
+                <h3 class="title wow animate__animated animate__fadeInUp">Game Gallery</h3>
+            </div>
+            <div class="row justify-content-center">
+                <!-- item -->
+                <div class="col-lg-4 col-md-6 wow animate__animated animate__fadeInUp animate__delay-1s">
+                    <div class="gallery_block">
+                        <img src="assets/images/gallery/1.jpg" alt="img" class="image-fit">
+                        <a href="assets/images/gallery/1.jpg" class="gallery_action popup_image">
+                            <i class="bi-plus-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-4 col-md-6 wow animate__animated animate__fadeInUp animate__delay-1s">
+                    <div class="gallery_block">
+                        <img src="assets/images/gallery/2.jpg" alt="img" class="image-fit">
+                        <a href="assets/images/gallery/2.jpg" class="gallery_action popup_image">
+                            <i class="bi-plus-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-4 col-md-6 wow animate__animated animate__fadeInUp animate__delay-1s">
+                    <div class="gallery_block">
+                        <img src="assets/images/gallery/3.jpg" alt="img" class="image-fit">
+                        <a href="assets/images/gallery/3.jpg" class="gallery_action popup_image">
+                            <i class="bi-plus-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-4 col-md-6 wow animate__animated animate__fadeInUp animate__delay-1s">
+                    <div class="gallery_block">
+                        <img src="assets/images/gallery/4.jpg" alt="img" class="image-fit">
+                        <a href="assets/images/gallery/4.jpg" class="gallery_action popup_image">
+                            <i class="bi-plus-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-4 col-md-6 wow animate__animated animate__fadeInUp animate__delay-1s">
+                    <div class="gallery_block">
+                        <img src="assets/images/gallery/5.jpg" alt="img" class="image-fit">
+                        <a href="assets/images/gallery/5.jpg" class="gallery_action popup_image">
+                            <i class="bi-plus-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-4 col-md-6 wow animate__animated animate__fadeInUp animate__delay-1s">
+                    <div class="gallery_block">
+                        <img src="assets/images/gallery/6.jpg" alt="img" class="image-fit">
+                        <a href="assets/images/gallery/6.jpg" class="gallery_action popup_image">
+                            <i class="bi-plus-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- item -->
+            </div>
+        </div>
+    </section>
+    <!-- Gallery End -->
+    <!-- Counter Video Start -->
+    <section class="section section-bg" style="background-image: url(assets/images/bg/2.jpg); --overlay-value: 87%;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <!-- item -->
+                <div class="col-lg-8">
+                    <div class="counter_wrapper wow animate__animated animate__fadeInUp">
+                        <div class="row">
+                            <!-- Item -->
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="counter_box">
+                                    <h6 class="mb-0 counter" data-from="0" data-to="123">0</h6>
+                                    <p class="mb-0 title">Matches</p>
+                                </div>
+                            </div>
+                            <!-- Item -->
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="counter_box">
+                                    <h6 class="mb-0 counter" data-from="0" data-to="5120">0</h6>
+                                    <p class="mb-0 title">Games</p>
+                                </div>
+                            </div>
+                            <!-- Item -->
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="counter_box">
+                                    <h6 class="mb-0 counter" data-from="0" data-to="32109">0</h6>
+                                    <p class="mb-0 title">Subscribers</p>
+                                </div>
+                            </div>
+                            <!-- Item -->
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="counter_box">
+                                    <h6 class="mb-0 counter" data-from="0" data-to="513">0</h6>
+                                    <p class="mb-0 title">Videos</p>
+                                </div>
+                            </div>
+                            <!-- Item -->
+                        </div>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-12 wow animate__animated animate__fadeInUp">
+                    <div class="video_box section-bg" style="background-image: url(assets/images/bg/4.jpg); --overlay-value: 38%;">
+                        <a href="#" class="popup_video video_btn">
+                            <i class="bi-play-circle"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- item -->
+            </div>
+        </div>
+    </section>
+    <!-- Counter Video End -->
+    <!-- Download App Start -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row align-items-end">
+                <div class="col-lg-6 wow animate__animated animate__fadeInLeft">
+                    <div class="app_phn_image mb-xl-30">
+                        <img src="assets/images/app_phone.png" alt="img" class="image-fit-contain">
+                    </div>
+                </div>
+                <div class="col-lg-6 wow animate__animated animate__fadeInRight">
+                    <div class="dwnld_text mb-xl-30">
+                        <div class="section-header">
+                            <h6 class="subtitle">Download</h6>
+                            <h3 class="title">Download App</h3>
+                        </div>
+                        <div class="app_image">
+                            <a href="#" class="d-flex h-100 app">
+                                <img src="assets/images/app_1.png" alt="img" class="image-fit-contain">
+                            </a>
+                            <a href="#" class="d-flex h-100 app">
+                                <img src="assets/images/app_2.png" alt="img" class="image-fit-contain">
+                            </a>
+                        </div>
+                        <div class="app_barcode">
+                            <img src="assets/images/qrcode.png" alt="code" class="image-fit-contain">
+                            <span class="barcode_text">Scan the QR Code to download the app</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Download App End -->
+    <!-- Play Process Start -->
+    <section class="section-padding section-bg-fix" style="background-image: url(assets/images/bg/5.jpg); --overlay-value: 75%;">
+        <div class="container">
+            <div class="section-header text-center">
+                <h6 class="subtitle wow animate__animated animate__fadeInUp">Why Us</h6>
+                <h3 class="title wow animate__animated animate__fadeInUp">How To Play ?</h3>
+            </div>
+            <div class="row">
+                <!-- Item -->
+                <div class="col-lg-3 col-sm-6 wow animate__animated animate__fadeInUp">
+                    <div class="hw_to_play">
+                        <div class="icon">
+                            <i class="bi-phone"></i>
+                        </div>
+                        <div class="text">
+                            <h6 class="title mb-0 fw-600">Download App</h6>
+                            <p class="mb-0 fw-500">Lorem ipsum dolor sit amet,</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item -->
+                <div class="col-lg-3 col-sm-6 wow animate__animated animate__fadeInUp animate__delay-1s">
+                    <div class="hw_to_play">
+                        <div class="icon">
+                            <i class="bi-person-circle"></i>
+                        </div>
+                        <div class="text">
+                            <h6 class="title mb-0 fw-600">Login / Signup</h6>
+                            <p class="mb-0 fw-500">Lorem ipsum dolor sit amet,</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item -->
+                <div class="col-lg-3 col-sm-6 wow animate__animated animate__fadeInUp animate__delay-2s">
+                    <div class="hw_to_play">
+                        <div class="icon">
+                            <i class="bi-hand-index-thumb"></i>
+                        </div>
+                        <div class="text">
+                            <h6 class="title mb-0 fw-600">Select Match</h6>
+                            <p class="mb-0 fw-500">Lorem ipsum dolor sit amet,</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item -->
+                <div class="col-lg-3 col-sm-6 wow animate__animated animate__fadeInUp animate__delay-3s">
+                    <div class="hw_to_play">
+                        <div class="icon">
+                            <i class="bi-controller"></i>
+                        </div>
+                        <div class="text">
+                            <h6 class="title mb-0 fw-600">Enjoy Match</h6>
+                            <p class="mb-0 fw-500">Lorem ipsum dolor sit amet,</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item -->
+            </div>
+        </div>
+    </section>
+    <!-- Play Process End -->
+    <!-- Testimonials Start -->
+    <section class="section-padding wow animate__animated animate__fadeInUp">
+        <div class="container">
+            <div class="row testimonial_slider">
+                <!-- item -->
+                <div class="px-3 slide_item">
+                    <div class="testimonial_item">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-4">
+                                <div class="testimonial_image">
+                                    <img src="assets/images/testimonials/1.jpg" alt="img" class="image-fit">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-8">
+                                <div class="testimonial_caption">
+                                    <div class="text_wrapper">
+                                        <div class="section-header text-center">
+                                            <h6 class="subtitle">Testimonial</h6>
+                                            <h3 class="title">What Client Say?</h3>
+                                        </div>
+                                        <div class="testi_icon"></div>
+                                        <p class="comment">Whenever I feel bored then playing tournaments is a great way to make you relax. </p>
+                                        <div class="testi_author">
+                                            <h5 class="name mb-0 fw-600">Robin Martin</h5>
+                                            <p class="thm-color-one fw-700">Gamer</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="px-3 slide_item">
+                    <div class="testimonial_item">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-4">
+                                <div class="testimonial_image">
+                                    <img src="assets/images/testimonials/2.jpg" alt="img" class="image-fit">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-8">
+                                <div class="testimonial_caption">
+                                    <div class="text_wrapper">
+                                        <div class="section-header text-center">
+                                            <h6 class="subtitle">Testimonial</h6>
+                                            <h3 class="title">What Client Say?</h3>
+                                        </div>
+                                        <div class="testi_icon"></div>
+                                        <p class="comment">Playing tournaments is so much fun when it is about to hang out with friends. </p>
+                                        <div class="testi_author">
+                                            <h5 class="name mb-0 fw-600">Tony Starc</h5>
+                                            <p class="thm-color-one fw-700">Gamer</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="px-3 slide_item">
+                    <div class="testimonial_item">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-4">
+                                <div class="testimonial_image">
+                                    <img src="assets/images/testimonials/3.jpg" alt="img" class="image-fit">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-8">
+                                <div class="testimonial_caption">
+                                    <div class="text_wrapper">
+                                        <div class="section-header text-center">
+                                            <h6 class="subtitle">Testimonial</h6>
+                                            <h3 class="title">What Client Say?</h3>
+                                        </div>
+                                        <div class="testi_icon"></div>
+                                        <p class="comment">It is amazing when I joined the commune and wind up winning cash. </p>
+                                        <div class="testi_author">
+                                            <h5 class="name mb-0 fw-600">David Banner</h5>
+                                            <p class="thm-color-one fw-700">Analylist</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- item -->
+            </div>
+        </div>
+    </section>
+    <!-- Testimonials End -->
+    <!-- Footer Start -->
+    <footer class="footer section pb-0 section-bg" style="background-image: url(assets/images/bg/3.jpg); --overlay-value: 90%;">
+        <div class="container">
+            <div class="footer_inner">
+                <div class="row g-0">
+                    <div class="col-lg-2 col-sm-6">
+                        <div class="footer_widgets">
+                            <div class="widgets_inner">
+                                <div class="ft_logo">
+                                    <img src="assets/images/logo.png" alt="logo" class="image-fit-contain">
+                                </div>
+                                <ul class="ft_social">
+                                    <li>
+                                        <a href="#" class="trigger_btn">
+                                            <i class="fab fa-facebook-f"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="trigger_btn">
+                                            <i class="fab fa-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="trigger_btn">
+                                            <i class="fab fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="footer_widgets">
+                            <div class="widgets_inner">
+                                <ul class="ft_menu">
+                                    <li>
+                                        <a href="index.html">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="about.html">About</a>
+                                    </li>
+                                    <li>
+                                        <a href="games.html">Popular Game</a>
+                                    </li>
+                                    <li>
+                                        <a href="match.html">Match</a>
+                                    </li>
+                                    <li>
+                                        <a href="blog-list.html">Blog</a>
+                                    </li>
+                                    <li>
+                                        <a href="contact.html">Contact</a>
+                                    </li>
+                                </ul>
+                                <p class="mb-0">Dong Men Bei Lu 1019hao Shen Chou Shi Bao Jian Ban Zhuan Jia Men Zhen Bu</p>
+                                <ul class="ft_info">
+                                    <li>
+                                        Call Us : <a href="#">+25 5841 362 915</a>
+                                    </li>
+                                    <li>
+                                        Email : <a href="#">example@example.com</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="footer_widgets">
+                            <div class="widgets_inner">
+                                <h5 class="ft_title">Subscribe To News</h5>
+                                <p class="mb-2">Lorem ipsum dolor sit amet,</p>
+                                <form action="#" method="POST" class="input-group newsletter_form">
+                                    <input type="email" name="#" class="form-control" placeholder="Email I'd" autocomplete="off" required>
+                                    <div class="input-group-append">
+                                        <button class="newsletter_btn" type="submit">
+                                            <i class="bi-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Copyright Start -->
+            <div class="copyright">
+                <div class="row align-items-center">
+                    <div class="col-lg-5 text-center text-lg-start">
+                        <p>Copyright © <span id="year"></span>. All Right Reserved. <a target="_blank" href="https://www.mobanwang.com/" title="网站模板">网站模板</a></p>
+                    </div>
+                    <div class="col-lg-5 order-lg-3">
+                        <ul class="cp_menu justify-content-center justify-content-lg-end">
+                            <li>
+                                <a href="#">Terms & Conditions</a>
+                            </li>
+                            <li>
+                                <a href="#">Privacy Policy</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 order-lg-2">
+                        <!-- Back To Top -->
+                        <button type="button" class="backtotop trigger_btn">
+                            <i class="bi-chevron-up"></i>
+                        </button>
+                        <!-- Back To Top -->
+                    </div>
+                </div>
+            </div>
+            <!-- Copyright End -->
+        </div>
+    </footer>
+    <!-- Footer End -->
+    <div class="df-cursor"></div>
+    <div class="df-cursor2"></div>
+    <!-- Scripts -->
+    <script src="assets/js/plugins/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/plugins/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/plugins/particles.js"></script>
+    <script src="assets/js/plugins/slick.min.js"></script>
+    <script src="assets/js/plugins/slick-animation.min.js"></script>
+    <script src="assets/js/plugins/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/plugins/jquery.counterup.min.js"></script>
+    <script src="assets/js/plugins/jquery.inview.min.js"></script>
+    <script src="assets/js/plugins/cursor.min.js"></script>
+    <script src="assets/js/plugins/wow.min.js"></script>
+    <script src="assets/js/custom.js"></script>
+</body>
+
+</html>

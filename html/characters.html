@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>艾爾芙卡角色介紹 - 聲音戰士們</title>
+    <meta name="description" content="認識卡兒芬、瑠波等獨特角色，了解他們的專屬武器、技能與使用率統計">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/LOGO.png" type="image/png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/brand-new.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        /* 角色頁面專用樣式 */
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-xl);
+            margin: var(--space-xl) 0;
+        }
+        
+        .character-card {
+            background: var(--card);
+            border: 1px solid #1b2533;
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            transition: all var(--duration-enter) ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .character-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="noise" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.02)"/><circle cx="75" cy="75" r="0.5" fill="rgba(255,255,255,0.03)"/></pattern></defs><rect width="100" height="100" fill="url(%23noise)"/></svg>');
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        
+        .character-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--pri);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .character-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            margin-bottom: var(--space-md);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .character-image {
+            width: 80px;
+            height: 80px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 2px solid var(--pri);
+            flex-shrink: 0;
+        }
+        
+        .character-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .character-info h3 {
+            color: var(--acc);
+            margin-bottom: var(--space-xs);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .character-weapon {
+            color: var(--muted);
+            font-size: 0.875rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .character-description {
+            color: var(--muted);
+            margin-bottom: var(--space-md);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .character-stats {
+            display: flex;
+            gap: var(--space-xs);
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stat-badge {
+            background: var(--pri);
+            color: var(--ink);
+            padding: 4px 8px;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .chart-container {
+            background: var(--card);
+            border: 1px solid #1b2533;
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin-top: var(--space-xl);
+        }
+        
+        .chart-title {
+            color: var(--acc);
+            text-align: center;
+            margin-bottom: var(--space-md);
+        }
+        
+        .pixel-character {
+            width: 100%;
+            height: auto;
+            max-width: 120px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 預載器 -->
+    <div class="preloader">
+        <div class="preloader-spinner"></div>
+    </div>
+
+    <!-- 導航列 -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index-new.html" class="nav-brand">
+                <img src="assets/images/LOGO.png" alt="艾爾芙卡 Logo" class="nav-logo">
+                艾爾芙卡
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index-new.html" class="nav-link">首頁</a></li>
+                <li><a href="download.html" class="nav-link">下載點</a></li>
+                <li><a href="world.html" class="nav-link">世界展示</a></li>
+                <li><a href="characters.html" class="nav-link active">角色展示</a></li>
+                <li><a href="gameplay.html" class="nav-link">玩法介紹</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero 區塊 -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content" style="grid-template-columns: 1fr; text-align: center;">
+                <div class="hero-text">
+                    <h1 class="hero-title">聲音戰士</h1>
+                    <p class="hero-subtitle">每位角色都掌握著獨特的聲音力量</p>
+                    <p class="hero-description">
+                        在艾爾芙卡的世界中，音樂家們用他們的聲音和樂器改變戰場。
+                        每位戰士都有專屬的武器、技能和戰鬥風格。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 角色展示 -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">可操控角色</h2>
+            <div class="character-grid">
+                <!-- 卡兒芬 -->
+                <div class="character-card">
+                    <div class="character-header">
+                        <div class="character-image">
+                            <img src="assets/images/琉波像素小人(大圖)_0.png" alt="卡兒芬" class="pixel pixel-character">
+                        </div>
+                        <div class="character-info">
+                            <h3>卡兒芬</h3>
+                            <p class="character-weapon">
+                                <i class="fas fa-music"></i> 古典豎琴
+                            </p>
+                        </div>
+                    </div>
+                    <p class="character-description">
+                        精通古典音樂的優雅戰士，擅長使用豎琴創造和諧的音波攻擊。
+                        她的技能注重範圍治療和防護，是團隊中不可或缺的支援角色。
+                    </p>
+                    <div class="character-stats">
+                        <span class="stat-badge">支援型</span>
+                        <span class="stat-badge">防禦特化</span>
+                        <span class="stat-badge">範圍治療</span>
+                    </div>
+                </div>
+
+                <!-- 瑠波 -->
+                <div class="character-card">
+                    <div class="character-header">
+                        <div class="character-image">
+                            <img src="assets/images/舞獅_0.png" alt="瑠波" class="pixel pixel-character">
+                        </div>
+                        <div class="character-info">
+                            <h3>瑠波</h3>
+                            <p class="character-weapon">
+                                <i class="fas fa-drum"></i> 雷鳴戰鼓
+                            </p>
+                        </div>
+                    </div>
+                    <p class="character-description">
+                        來自東方的節拍大師，使用強力的鼓聲震撼戰場。
+                        擅長近距離戰鬥和地形破壞，是前線的強力戰士。
+                    </p>
+                    <div class="character-stats">
+                        <span class="stat-badge">攻擊型</span>
+                        <span class="stat-badge">地形破壞</span>
+                        <span class="stat-badge">近戰專精</span>
+                    </div>
+                </div>
+
+                <!-- 艾科 -->
+                <div class="character-card">
+                    <div class="character-header">
+                        <div class="character-image">
+                            <img src="assets/images/鐮刀_0.png" alt="艾科" class="pixel pixel-character">
+                        </div>
+                        <div class="character-info">
+                            <h3>艾科</h3>
+                            <p class="character-weapon">
+                                <i class="fas fa-microphone"></i> 電子合成器
+                            </p>
+                        </div>
+                    </div>
+                    <p class="character-description">
+                        掌握現代電子音樂的科技戰士，能夠產生各種合成音效。
+                        擁有靈活的戰術選擇和強大的範圍攻擊能力。
+                    </p>
+                    <div class="character-stats">
+                        <span class="stat-badge">技術型</span>
+                        <span class="stat-badge">範圍攻擊</span>
+                        <span class="stat-badge">多變戰術</span>
+                    </div>
+                </div>
+
+                <!-- 莉拉 -->
+                <div class="character-card">
+                    <div class="character-header">
+                        <div class="character-image">
+                            <div style="width: 100%; height: 100%; background: var(--pri); display: flex; align-items: center; justify-content: center; color: var(--ink); font-size: 1.5rem;">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div class="character-info">
+                            <h3>莉拉</h3>
+                            <p class="character-weapon">
+                                <i class="fas fa-guitar"></i> 電吉他
+                            </p>
+                        </div>
+                    </div>
+                    <p class="character-description">
+                        搖滾樂的叛逆靈魂，使用電吉他釋放狂野的音波能量。
+                        擅長快速移動和爆發性攻擊，是戰場上的游擊專家。
+                    </p>
+                    <div class="character-stats">
+                        <span class="stat-badge">速攻型</span>
+                        <span class="stat-badge">高機動</span>
+                        <span class="stat-badge">爆發傷害</span>
+                    </div>
+                </div>
+
+                <!-- 薩克斯 -->
+                <div class="character-card">
+                    <div class="character-header">
+                        <div class="character-image">
+                            <div style="width: 100%; height: 100%; background: var(--acc); display: flex; align-items: center; justify-content: center; color: var(--ink); font-size: 1.5rem;">
+                                <i class="fas fa-music"></i>
+                            </div>
+                        </div>
+                        <div class="character-info">
+                            <h3>薩克斯</h3>
+                            <p class="character-weapon">
+                                <i class="fas fa-wind"></i> 薩克斯風
+                            </p>
+                        </div>
+                    </div>
+                    <p class="character-description">
+                        爵士樂的即興大師，用薩克斯風演奏出變幻莫測的旋律。
+                        能夠適應各種戰術，是最具彈性的全能戰士。
+                    </p>
+                    <div class="character-stats">
+                        <span class="stat-badge">全能型</span>
+                        <span class="stat-badge">即興戰術</span>
+                        <span class="stat-badge">適應性強</span>
+                    </div>
+                </div>
+
+                <!-- 貝多芬 -->
+                <div class="character-card">
+                    <div class="character-header">
+                        <div class="character-image">
+                            <div style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--pri), var(--acc)); display: flex; align-items: center; justify-content: center; color: var(--ink); font-size: 1.5rem;">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                        </div>
+                        <div class="character-info">
+                            <h3>貝多芬</h3>
+                            <p class="character-weapon">
+                                <i class="fas fa-piano"></i> 大鋼琴
+                            </p>
+                        </div>
+                    </div>
+                    <p class="character-description">
+                        傳說中的音樂大師，掌握著最純粹的音樂力量。
+                        擁有強大的範圍技能和指揮能力，是戰場上的領導者。
+                    </p>
+                    <div class="character-stats">
+                        <span class="stat-badge">傳奇級</span>
+                        <span class="stat-badge">指揮系</span>
+                        <span class="stat-badge">範圍控制</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 角色使用率統計 -->
+    <section class="section" style="background: rgba(18, 24, 33, 0.5);">
+        <div class="container">
+            <h2 class="section-title">角色使用率統計</h2>
+            <div class="chart-container">
+                <h3 class="chart-title">玩家選擇偏好（過去30天）</h3>
+                <canvas id="characterUsageChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- 角色搭配建議 -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">戰術搭配建議</h2>
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-shield-alt"></i>
+                        防守型組合
+                    </div>
+                    <div class="card-content">
+                        <p><strong>卡兒芬 + 貝多芬</strong></p>
+                        <p>以防禦和控制為主的穩健組合。卡兒芬提供治療支援，貝多芬負責範圍控制和指揮協調。適合喜歡策略性遊戲的玩家。</p>
+                        <div class="character-stats mt-sm">
+                            <span class="stat-badge">高生存力</span>
+                            <span class="stat-badge">團隊協作</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-sword"></i>
+                        攻擊型組合
+                    </div>
+                    <div class="card-content">
+                        <p><strong>瑠波 + 莉拉</strong></p>
+                        <p>快速突擊的激進組合。瑠波負責破壞地形和前線攻擊，莉拉提供高機動性和爆發傷害。適合喜歡激烈戰鬥的玩家。</p>
+                        <div class="character-stats mt-sm">
+                            <span class="stat-badge">高攻擊力</span>
+                            <span class="stat-badge">快節奏</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-balance-scale"></i>
+                        平衡型組合
+                    </div>
+                    <div class="card-content">
+                        <p><strong>艾科 + 薩克斯</strong></p>
+                        <p>攻守兼備的均衡組合。艾科提供技術性戰術選擇，薩克斯負責靈活應對。適合各種戰況的萬能組合。</p>
+                        <div class="character-stats mt-sm">
+                            <span class="stat-badge">均衡發展</span>
+                            <span class="stat-badge">適應性強</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-star"></i>
+                        新手推薦
+                    </div>
+                    <div class="card-content">
+                        <p><strong>卡兒芬 + 薩克斯</strong></p>
+                        <p>適合新手入門的友善組合。卡兒芬的支援能力能夠彌補操作失誤，薩克斯的全能性讓新手能夠學習各種戰術。</p>
+                        <div class="character-stats mt-sm">
+                            <span class="stat-badge">容錯率高</span>
+                            <span class="stat-badge">學習友善</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁腳 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>艾爾芙卡</h3>
+                    <p>在『聲音』中改寫地形的戰棋對決</p>
+                    <p>電子世界『艾爾芙卡』：能以正確的聲音創造、摧毀與改變萬物。</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>快速連結</h3>
+                    <ul>
+                        <li><a href="download.html">下載遊戲</a></li>
+                        <li><a href="world.html">世界觀</a></li>
+                        <li><a href="characters.html">角色介紹</a></li>
+                        <li><a href="gameplay.html">遊戲玩法</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>開發團隊</h3>
+                    <p><strong>結束樂隊</strong></p>
+                    <p>指導教授：廖世傑、吳思璿</p>
+                    <ul>
+                        <li>蘇柏穎</li>
+                        <li>黃鉉展</li>
+                        <li>唐義君</li>
+                        <li>陳廷安</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>聯絡我們</h3>
+                    <div class="contact-info">
+                        <p>追蹤我們的最新動態</p>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/elvka_game/" target="_blank" class="social-link">
+                                <img src="assets/images/IG_0.png" alt="Instagram" style="width: 32px; height: 32px; margin-right: 8px;">
+                                @elvka_game
+                            </a>
+                        </div>
+                        <div class="qr-section">
+                            <p style="margin-bottom: var(--space-xs); color: var(--muted); font-size: 0.9rem;">掃描 QR Code 關注我們</p>
+                            <img src="assets/images/qrcode.png" alt="Instagram QR Code" class="qr-code">
+                        </div>
+                        <div class="contact-details">
+                            <p><strong>開發團隊：</strong>結束樂隊</p>
+                            <p><strong>聯絡信箱：</strong>elvka.game@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 艾爾芙卡 - 結束樂隊. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 預載器
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.body.classList.add('loaded');
+            }, 500);
+        });
+
+        // 導航列滾動效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Chart.js 統計圖
+        const ctx = document.getElementById('characterUsageChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['卡兒芬', '瑠波', '艾科', '莉拉', '薩克斯', '貝多芬'],
+                datasets: [{
+                    label: '使用率 (%)',
+                    data: [28, 22, 18, 15, 12, 5],
+                    backgroundColor: [
+                        'rgba(47, 119, 200, 0.8)',
+                        'rgba(100, 199, 230, 0.8)',
+                        'rgba(47, 119, 200, 0.6)',
+                        'rgba(100, 199, 230, 0.6)',
+                        'rgba(47, 119, 200, 0.4)',
+                        'rgba(100, 199, 230, 0.4)'
+                    ],
+                    borderColor: [
+                        '#2F77C8',
+                        '#64C7E6',
+                        '#2F77C8',
+                        '#64C7E6',
+                        '#2F77C8',
+                        '#64C7E6'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#64C7E6'
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 35,
+                        ticks: {
+                            color: '#91A4B6'
+                        },
+                        grid: {
+                            color: 'rgba(145, 164, 182, 0.2)'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: '#91A4B6'
+                        },
+                        grid: {
+                            color: 'rgba(145, 164, 182, 0.2)'
+                        }
+                    }
+                }
+            }
+        });
+
+        // 滾動動畫
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // 觀察所有元素
+        document.querySelectorAll('.card, .character-card, .chart-container').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

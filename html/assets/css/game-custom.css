@@ -1,0 +1,708 @@
+/* 艾爾芙卡 - 自定義樣式 */
+
+/* 主題色彩變數 */
+:root {
+    --primary-gold: #e3c45b;
+    --primary-gold-dark: #d1b047;
+    --dark-bg: #0f0f0f;
+    --card-bg: rgba(255, 255, 255, 0.05);
+}
+
+/* 全局樣式 */
+.pixel-art {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+/* 預載器樣式 */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--dark-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.preloader img {
+    width: 80px;
+    height: 80px;
+    filter: brightness(0) saturate(100%) invert(77%) sepia(88%) saturate(386%) hue-rotate(357deg) brightness(102%) contrast(93%);
+}
+
+/* 遊戲 Hero 區塊 */
+.game-hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, rgba(227, 196, 91, 0.1) 0%, rgba(15, 15, 15, 0.9) 100%),
+                url('../images/bg/1.jpg') center/cover;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.game-hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.game-logo {
+    max-width: 200px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 20px rgba(227, 196, 91, 0.3));
+}
+
+.hero-buttons .thm-btn {
+    margin: 0 10px 10px 0;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid var(--primary-gold);
+    background: var(--primary-gold);
+    color: #000;
+    transition: all 0.3s ease;
+}
+
+.hero-buttons .thm-btn:hover {
+    background: transparent;
+    color: var(--primary-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(227, 196, 91, 0.3);
+}
+
+/* Hero 標題樣式 */
+.hero-title-main {
+    background: linear-gradient(135deg, var(--primary-gold) 0%, #fff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-subtitle-main {
+    color: var(--primary-gold);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* 特色高亮 */
+.feature-highlight {
+    background: rgba(227, 196, 91, 0.1);
+    border: 1px solid var(--primary-gold);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-highlight::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(227, 196, 91, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.feature-highlight:hover {
+    transform: translateY(-5px);
+    background: rgba(227, 196, 91, 0.15);
+    box-shadow: 0 10px 30px rgba(227, 196, 91, 0.2);
+}
+
+.feature-highlight:hover::before {
+    left: 100%;
+}
+
+.feature-highlight i {
+    color: var(--primary-gold);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+/* 特色卡片樣式 */
+.feature-card {
+    background: rgba(227, 196, 91, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 20px 0;
+    border: 1px solid var(--primary-gold);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(227, 196, 91, 0.1), transparent);
+    transform: rotate(45deg);
+    transition: all 0.6s ease;
+    opacity: 0;
+}
+
+.feature-card:hover::before {
+    animation: shimmer 1.5s ease-in-out;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    background: rgba(227, 196, 91, 0.15);
+    border-color: var(--primary-gold);
+}
+
+@keyframes shimmer {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%) rotate(45deg);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100%) rotate(45deg);
+    }
+}
+
+/* 角色卡片樣式 */
+.character-card {
+    background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+    border-radius: 15px;
+    padding: 30px 20px;
+    margin: 15px 0;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--primary-gold);
+}
+
+.character-card:hover {
+    background: linear-gradient(145deg, #2a2a2a, #3a3a3a);
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 20px 40px rgba(227, 196, 91, 0.2);
+    border-color: var(--primary-gold-dark);
+}
+
+.character-stats {
+    margin-top: 15px;
+}
+
+.character-stats .badge {
+    margin: 5px;
+    padding: 8px 12px;
+    font-size: 12px;
+    border-radius: 20px;
+    background: var(--primary-gold);
+    color: #000;
+}
+
+/* 武器展示區域 */
+.weapon-showcase {
+    padding: 80px 0;
+    background: linear-gradient(45deg, rgba(227, 196, 91, 0.1), rgba(15, 15, 15, 0.9));
+    position: relative;
+}
+
+.weapon-showcase::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(227, 196, 91, 0.1) 0%, transparent 70%);
+}
+
+/* 區塊標題 */
+.section-title-gold {
+    color: var(--primary-gold);
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    font-weight: bold;
+}
+
+.section-title-gold::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--primary-gold);
+    border-radius: 2px;
+}
+
+/* 角色展示 */
+.character-showcase {
+    max-width: 300px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.character-showcase img {
+    filter: drop-shadow(0 0 20px rgba(227, 196, 91, 0.3));
+    transition: transform 0.3s ease;
+}
+
+.character-showcase:hover img {
+    transform: scale(1.05);
+}
+
+/* 遊戲標誌 */
+.game-logo-main {
+    max-width: 150px;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 0 20px rgba(227, 196, 91, 0.3));
+    transition: transform 0.3s ease;
+}
+
+.game-logo-main:hover {
+    transform: scale(1.05);
+}
+
+/* 按鈕樣式增強 */
+.thm-btn {
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--primary-gold);
+    background: var(--primary-gold);
+    color: #000;
+    transition: all 0.3s ease;
+}
+
+.thm-btn:hover {
+    background: transparent;
+    color: var(--primary-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(227, 196, 91, 0.3);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--primary-gold);
+}
+
+.btn-outline:hover {
+    background: var(--primary-gold);
+    color: #000;
+}
+
+/* 卡片樣式增強 */
+.single_games_inner {
+    background: var(--card-bg);
+    border: 1px solid rgba(227, 196, 91, 0.2);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.single_games_inner:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary-gold);
+    box-shadow: 0 15px 40px rgba(227, 196, 91, 0.2);
+}
+
+.single_blog_inner {
+    background: var(--card-bg);
+    border: 1px solid rgba(227, 196, 91, 0.2);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.single_blog_inner:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-gold);
+    box-shadow: 0 10px 30px rgba(227, 196, 91, 0.15);
+}
+
+/* 專業特色樣式 */
+.single_speciality_inner {
+    background: var(--card-bg);
+    border: 1px solid rgba(227, 196, 91, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.single_speciality_inner:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-gold);
+    background: rgba(227, 196, 91, 0.05);
+}
+
+/* 頁腳樣式 */
+.footer {
+    background: linear-gradient(135deg, rgba(227, 196, 91, 0.1), rgba(15, 15, 15, 0.95));
+    border-top: 1px solid var(--primary-gold);
+}
+
+.footer_logo {
+    filter: drop-shadow(0 0 10px rgba(227, 196, 91, 0.3));
+}
+
+.widget_title {
+    color: var(--primary-gold) !important;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.widget_title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: var(--primary-gold);
+}
+
+.footer_links li a {
+    color: #ccc;
+    transition: color 0.3s ease;
+}
+
+.footer_links li a:hover {
+    color: var(--primary-gold);
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateX(10px);
+}
+
+.feature-item i {
+    font-size: 20px;
+    margin-right: 15px;
+    width: 30px;
+    color: var(--primary-gold);
+}
+
+/* 背景樣式 */
+.section-bg-dark {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    color: white;
+    position: relative;
+}
+
+.section-bg-dark::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="stars" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="rgba(227,196,91,0.1)"/><circle cx="80" cy="40" r="0.5" fill="rgba(227,196,91,0.15)"/><circle cx="40" cy="70" r="1.5" fill="rgba(227,196,91,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23stars)"/></svg>');
+    opacity: 0.3;
+}
+
+/* 區段標題 */
+.section-title {
+    color: var(--primary-gold);
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    font-weight: bold;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--primary-gold);
+    border-radius: 2px;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .hero-title-main {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle-main {
+        font-size: 1.2rem;
+    }
+    
+    .section-title-gold, .section-title {
+        font-size: 2rem;
+    }
+    
+    .feature-highlight {
+        margin: 0.5rem 0;
+        padding: 1rem;
+    }
+    
+    .game-logo-main {
+        max-width: 120px;
+    }
+    
+    .game-hero {
+        padding: 60px 0;
+    }
+}
+
+/* 動畫效果 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.game-hero .container > .row > div {
+    animation: fadeInUp 1s ease 0.5s both;
+}
+
+.feature-highlight {
+    animation: fadeInUp 1s ease 0.8s both;
+}
+
+/* 滾動動畫 */
+.wow {
+    visibility: hidden;
+}
+
+.animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+/* 載入完成後隱藏預載器 */
+body.loaded .preloader {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* 額外的互動效果 */
+.hover-glow:hover {
+    filter: drop-shadow(0 0 15px rgba(227, 196, 91, 0.5));
+}
+
+.text-gold {
+    color: var(--primary-gold) !important;
+}
+
+.bg-gold {
+    background-color: var(--primary-gold) !important;
+}
+
+.border-gold {
+    border-color: var(--primary-gold) !important;
+}
+
+/* 載入動畫 */
+@keyframes loading {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading {
+    animation: loading 2s linear infinite;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 2px;
+}
+
+/* 頁腳樣式 */
+.footer {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    padding: 50px 0 20px;
+}
+
+.footer_logo {
+    filter: brightness(0.8);
+    transition: all 0.3s ease;
+}
+
+.footer_logo:hover {
+    filter: brightness(1);
+    transform: scale(1.05);
+}
+
+.footer_links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer_links li {
+    margin: 8px 0;
+}
+
+.footer_links a {
+    transition: all 0.3s ease;
+}
+
+.footer_links a:hover {
+    color: #667eea !important;
+    text-decoration: none;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .game-hero {
+        padding: 60px 0;
+        text-align: center;
+    }
+    
+    .game-logo {
+        max-width: 150px;
+    }
+    
+    .hero-buttons .thm-btn {
+        display: block;
+        margin: 10px auto;
+        width: 200px;
+    }
+    
+    .feature-card {
+        margin: 15px 0;
+        padding: 20px;
+    }
+    
+    .character-card {
+        margin: 20px 0;
+    }
+    
+    .weapon-showcase {
+        padding: 60px 0;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+/* 動畫效果 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.animate-on-scroll.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 按鈕懸停效果 */
+.thm-btn {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.thm-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+    z-index: -1;
+}
+
+.thm-btn:hover::before {
+    left: 100%;
+}
+
+/* 圖片懸停效果 */
+.hover-scale {
+    transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+    transform: scale(1.1);
+}
+
+/* 載入動畫 */
+.loading-animation {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
